@@ -17,11 +17,28 @@ def data_mining(crypto_pair, interval, start_time, end_time):
     payload = {}
     path = '/openApi/swap/v2/quote/klines'
     method = "GET"
+    intervals={
+        "1m":86400000,
+        "3m":259200000,
+        "5m":432000000,
+        "15m":1296000000,
+        "30m":2592000000,
+        "1h":5184000000,
+        "2h":10368000000,
+        "4h":20736000000,
+        "6h":31104000000,
+        "8h":41472000000,
+        "12h":62208000000,
+        "1d":124416000000,
+        "3d":373248000000,
+        "1w":870912000000,
+        "1M":3732480000000
+    }
     start_timestamp=int(time.mktime(datetime.datetime.strptime(start_time,"%Y/%m/%d").timetuple())*1000)
     end_timestamp=int(time.mktime(datetime.datetime.strptime(end_time,"%Y/%m/%d").timetuple())*1000)
     timestamps=[]
     data=[]
-    for i in range(start_timestamp, end_timestamp+1, 432000000):
+    for i in range(start_timestamp, end_timestamp+1, intervals[interval]):
         timestamps.append(i)
     
     for j in range(len(timestamps)-1):
