@@ -53,7 +53,18 @@ def data_mining(crypto_pair, interval, start_time, end_time):
         data_dict=json.loads(send_request(method, path, paramsStr, payload))['data']
         data_frame=pd.DataFrame(data_dict)
         data.append(data_frame)
-    
+    if timestamps[len(timestamps)-1]!=end_timestamp:
+        paramsMap = {
+            "symbol": crypto_pair,
+            "interval": interval,
+            "startTime": timestamps[len(timestamps)-1],
+            "endTime": end_timestamp,
+            "limit": 1440
+        }
+        paramsStr = praseParam(paramsMap)
+        data_dict=json.loads(send_request(method, path, paramsStr, payload))['data']
+        data_frame=pd.DataFrame(data_dict)
+        data.append(data_frame)
     return data_preprocessing(data)
     
 def get_sign(api_secret, payload):
