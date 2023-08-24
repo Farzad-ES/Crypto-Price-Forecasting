@@ -1,0 +1,2 @@
+model_checkpoint_path: "LSTM Classification_model_weights"
+all_model_checkpoint_paths: "LSTM Classification_model_weights"
