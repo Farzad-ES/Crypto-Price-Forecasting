@@ -1,0 +1,1 @@
+{"batch_size": 40, "epochs": 75, "model__dropout_rate": 0.2, "model__neurons": 60, "best_score": 0.5235240345810116}
